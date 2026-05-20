@@ -148,10 +148,5 @@ Java 侧：JUnit 5 + stub 接口，无 COMSOL 运行时依赖。
 - 远端：`origin` → `https://github.com/ssugd123/comsolAppForMagnetic.git`
 - 分支：`master` → `main` (remote)
 - 提交格式：`feat:` / `fix:` / `chore:` 前缀
+- 不要自动提交、推送任何代码
 
-代理需配置 `http://127.0.0.1:7892`（MGNB）：
-```bash
-git config --global http.proxy http://127.0.0.1:7892
-git config --global https.proxy http://127.0.0.1:7892
-```
-IDEA 需额外在 `Settings → HTTP Proxy` 中配置同地址。
