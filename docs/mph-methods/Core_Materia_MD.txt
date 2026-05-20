@@ -1,0 +1,11 @@
+switch (core_materia) {
+  case "TDK_PC40_100cel":
+    model.param("par8").set("mu_display", "mu_TDK_PC40_100cel");
+    break;
+  case "TDK_PC95_100cel":
+    model.param("par8").set("mu_display", "mu_TDK_PC95_100cel");
+    break;
+  case "User_Def":
+    model.param("par8").set("mu_display", "mu_Def");
+    break;
+}

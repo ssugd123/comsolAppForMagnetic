@@ -1,0 +1,11 @@
+switch (solver_type) {
+  case "freq":
+    mag_model = mag_model_freq;
+    break;
+  case "time":
+    mag_model = mag_model_time;
+    break;
+  case "sata":
+    mag_model = mag_model_stat;
+    break;
+}

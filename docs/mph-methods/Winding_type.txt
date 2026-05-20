@@ -1,0 +1,110 @@
+switch (winding_type) {
+  case "CIR": {
+    model.component("comp1").geom("geom1").feature("pi2").set("part", "part4");
+    model.component("comp1").geom("geom1").feature("pi2").set("displ", new String[]{"asm_x", "asm_y", "asm_z"});
+    model.component("comp1").geom("geom1").feature("pi2").set("selkeepnoncontr", false);
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("selkeepdom", "pi2_sel1.dom", "on");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("selkeepbnd", "pi2_sel2.bnd", "on");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("inputexpr", "R1", "WINGDING_CIR_R1");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("inputexpr", "L", "WINGDING_CIR_L");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("inputexpr", "W", "WINGDING_CIR_W");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("inputexpr", "wire_gap", "WINGDING_CIR_wire_gap");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("inputexpr", "N", "WINGDING_CIR_N");
+    model.component("comp1").geom("geom1").run("fin");
+
+    // 动态调整线圈数量 + 设置选区
+    int baseEntity = 3;
+    int nCoils = (int) model.param().evaluate("WINGDING_CIR_N");
+
+    // 统计现有线圈数
+    int current = 0;
+    while (true) {
+      try {
+        model.component("comp1").physics("mf").feature("coil" + (current + 1)).label();
+        current++;
+      } catch (Exception e) {
+        break;
+      }
+    }
+
+    // 创建不足的线圈
+    for (int i = current + 1; i <= nCoils; i++) {
+      String tag = "coil" + i;
+      model.component("comp1").physics("mf").create(tag, "Coil", 3);
+      model.nodeGroup("grp1").add(tag);
+    }
+
+    // 删除多余的线圈
+    for (int i = current; i > nCoils; i--) {
+      String tag = "coil" + i;
+      model.component("comp1").physics("mf").feature().remove(tag);
+    }
+
+    // 设置选区 + 激励截面
+    for (int i = 0; i < nCoils; i++) {
+      String coilTag = "coil" + (i + 1);
+      int entity = baseEntity + i;
+      model.component("comp1").physics("mf").feature(coilTag).active(true);
+      model.component("comp1").physics("mf").feature(coilTag).selection().set(entity);
+      model.component("comp1").physics("mf").feature(coilTag)
+        .feature("ccc1").feature("ct1").selection().named("geom1_pi2_sel2_bnd");
+    }
+    break;
+  }
+  case "REC": {
+    model.component("comp1").geom("geom1").feature("pi2").set("part", "part5");
+    model.component("comp1").geom("geom1").feature("pi2").set("displ", new String[]{"asm_x", "asm_y", "asm_z"});
+    model.component("comp1").geom("geom1").feature("pi2").set("selkeepnoncontr", false);
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("selkeepdom", "pi2_sel1.dom", "on");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("selkeepbnd", "pi2_sel2.bnd", "on");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("inputexpr", "Lin", "WINGDING_REC_Lin");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("inputexpr", "Win", "WINGDING_REC_Win");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("inputexpr", "R1", "WINGDING_REC_R1");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("inputexpr", "L", "WINGDING_REC_L");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("inputexpr", "W", "WINGDING_REC_W");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("inputexpr", "wire_gap", "WINGDING_REC_wire_gap");
+    model.component("comp1").geom("geom1").feature("pi2").setEntry("inputexpr", "N", "WINGDING_REC_N");
+    model.component("comp1").geom("geom1").run("fin");
+
+    // 动态调整线圈数量 + 设置选区
+    int baseEntity = 3;
+    int nCoils = (int) model.param().evaluate("WINGDING_REC_N");
+
+    // 统计现有线圈数
+    int current = 0;
+    while (true) {
+      try {
+        model.component("comp1").physics("mf").feature("coil" + (current + 1)).label();
+        current++;
+      } catch (Exception e) {
+        break;
+      }
+    }
+
+    // 创建不足的线圈
+    for (int i = current + 1; i <= nCoils; i++) {
+      String tag = "coil" + i;
+      model.component("comp1").physics("mf").create(tag, "Coil", 3);
+      model.nodeGroup("grp1").add(tag);
+    }
+
+    // 删除多余的线圈
+    for (int i = current; i > nCoils; i--) {
+      String tag = "coil" + i;
+      model.component("comp1").physics("mf").feature().remove(tag);
+    }
+
+    // 设置选区 + 激励截面
+    for (int i = 0; i < nCoils; i++) {
+      String coilTag = "coil" + (i + 1);
+      int entity = baseEntity + i;
+      model.component("comp1").physics("mf").feature(coilTag).active(true);
+      model.component("comp1").physics("mf").feature(coilTag).selection().set(entity);
+      model.component("comp1").physics("mf").feature(coilTag)
+        .feature("ccc1").feature("ct1").selection().named("geom1_pi2_sel2_bnd");
+    }
+    break;
+  }
+  default:
+    break;
+}

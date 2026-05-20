@@ -1,0 +1,2 @@
+model.component("comp1").view("view8").hideEntities("hide1").set(1);
+model.component("comp1").selection("sel1").set(1);

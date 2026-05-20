@@ -1,0 +1,50 @@
+switch (core_type) {
+  case "EE":
+    model.component("comp1").geom("geom1").feature("pi1").set("part", "part1");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D1", "CORE_EE_D1");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D2", "CORE_EE_D2");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D3", "CORE_EE_D3");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D4", "CORE_EE_D4");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D5", "CORE_EE_D5");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D6", "CORE_EE_D6");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D7", "CORE_EE_D7");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D8", "CORE_EE_D8");
+    model.component("comp1").geom("geom1").feature("pi1")
+      .setEntry("inputexpr", "Outer_Leg_Gap", "CORE_EE_Outer_Leg_Gap");
+    model.component("comp1").geom("geom1").feature("pi1")
+      .setEntry("inputexpr", "Central_Leg_Gap", "CORE_EE_Central_Leg_Gap");
+    model.component("comp1").physics("mf").feature("als1").selection().named("geom1_pi1_sel1_dom");
+    model.component("comp1").geom("geom1").run("fin");
+    break;
+  case "PQ":
+    model.component("comp1").geom("geom1").feature("pi1").set("part", "part2");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D1", "CORE_PQ_D1");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D2", "CORE_PQ_D2");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D3", "CORE_PQ_D3");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D4", "CORE_PQ_D4");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D5", "CORE_PQ_D5");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D6", "CORE_PQ_D6");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D7", "CORE_PQ_D7");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D8", "CORE_PQ_D8");
+    model.component("comp1").geom("geom1").feature("pi1")
+      .setEntry("inputexpr", "Central_Leg_Gap", "CORE_PQ_Central_Leg_Gap");
+    model.component("comp1").physics("mf").feature("als1").selection().named("geom1_pi1_sel1_dom");
+    model.component("comp1").geom("geom1").run("fin");
+    break;
+  case "RING":
+    // action for cond2
+    model.component("comp1").geom("geom1").feature("pi1").set("part", "part3");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D1", "CORE_RING_D1");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D2", "CORE_RING_D2");
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("inputexpr", "D3", "CORE_RING_D3");
+    model.component("comp1").geom("geom1").feature("pi1")
+      .setEntry("inputexpr", "Gap_Length", "CORE_RING_Gap_Length");
+    model.component("comp1").geom("geom1").feature("pi1")
+      .setEntry("inputexpr", "Angular_Position", "CORE_RING_Angular_Position");
+    model.component("comp1").geom("geom1").feature("pi1").set("selkeepnoncontr", false);
+    model.component("comp1").geom("geom1").feature("pi1").setEntry("selkeepdom", "pi1_sel1.dom", "on");
+    model.component("comp1").physics("mf").feature("als1").selection().named("geom1_pi1_sel1_dom");
+    model.component("comp1").geom("geom1").run("fin");
+    break;
+}
+

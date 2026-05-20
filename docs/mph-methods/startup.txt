@@ -1,0 +1,8 @@
+if (!AppEntry.validateLicense()) {
+  alert(AppEntry.getLicenseErrorMessage());
+  return;
+}
+if (!AppEntry.checkTrial()) {
+  alert(AppEntry.getTrialErrorMessage());
+  return;
+}

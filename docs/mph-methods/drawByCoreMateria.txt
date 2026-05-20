@@ -1,0 +1,17 @@
+// core_materia 值到 mat tag 的映射
+String matTag = "";
+switch (core_materia) {
+  case "User_Def": matTag = "mat5"; break;
+  case "TDK_PC40_100cel": matTag = "mat6"; break;
+  case "TDK_PC95_100cel": matTag = "mat7"; break;
+}
+
+if (!matTag.isEmpty()) {
+  try {model.result().remove("pg_bh"); } catch (Exception e) {}
+  model.material(matTag).propertyGroup("EffectiveBHCurve").func("BHeff").createPlot("pg_bh");
+  model.result("pg_bh").set("xlabel", "H (A/m)");
+  model.result("pg_bh").set("ylabel", "B (T)");
+  model.result("pg_bh").set("showgrid", true);
+  model.result("pg_bh").set("title", "Effective BH Curve");
+  useGraphics(model.result("pg_bh"), "/BH_Curve_graphics/graphics2");
+}

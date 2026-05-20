@@ -1,0 +1,5 @@
+app.mainWindow().ribbon("HomeTab").item("ribbonsection1").item("menu1")
+  .set("title", "稳态");
+solver_type = "stat";
+mag_model = mag_model_stat;
+app.form("Core_Materia").formObject("textlabel13").set("text", "BH曲线");

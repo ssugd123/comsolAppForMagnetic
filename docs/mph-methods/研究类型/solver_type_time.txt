@@ -1,0 +1,5 @@
+app.mainWindow().ribbon("HomeTab").item("ribbonsection1").item("menu1")
+  .set("title", "瞬态");
+solver_type = "time";
+mag_model = mag_model_time;
+app.form("Core_Materia").formObject("textlabel13").set("text", "BH曲线");

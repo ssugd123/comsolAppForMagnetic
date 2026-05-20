@@ -1,0 +1,6 @@
+app.mainWindow().ribbon("HomeTab").item("ribbonsection1").item("menu1")
+  .set("title", "频域");
+solver_type = "freq";
+mag_model = mag_model_freq;
+app.form("Core_Materia").formObject("textlabel13").set("text", "有效BH曲线");
+
