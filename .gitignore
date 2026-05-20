@@ -1,0 +1,27 @@
+# IDE
+.idea/
+
+# Maven build
+target/
+
+# COMSOL model files
+*.mph
+*.mph.lock
+
+# Extracted/analysis
+_mph_extract*/
+
+_pdfs/
+docs/
+graphify-out/
+src/graphify-out/
+
+# Temp files
+~$*
+*.tmp
+
+
+
+# Archives
+*.rar
+*.zip
